@@ -8,14 +8,17 @@ const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3000;
 
 //Use body parser
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
 //API key = pk_2bb706c75ea345e1b5a8a28132acf7a7
 //Create call API function
 function call_api(finishedAPI, name) {
   request(
-    "https://cloud.iexapis.com/stable/stock/" + name + "/quote?token=pk_2bb706c75ea345e1b5a8a28132acf7a7",
-    { json: true },
+    "https://cloud.iexapis.com/stable/stock/" + name + "/quote?token=pk_2bb706c75ea345e1b5a8a28132acf7a7", {
+      json: true
+    },
     (err, res, body) => {
       if (err) {
         return console.log(err);
@@ -33,10 +36,8 @@ app.set("view engine", "handlebars");
 
 //Landing page route
 app.get("/", function (req, res) {
-    res.render("landing", {
-  });
+  res.render("landing", {});
 });
-
 
 //Set handlebar GET routes
 app.get("/home", function (req, res) {
